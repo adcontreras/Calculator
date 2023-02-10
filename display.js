@@ -1,56 +1,56 @@
 class Display {
-    constructor(displayPreviousValue, displayCurrentValue) {
-        this.displayCurrentValue = displayCurrentValue;
-        this.displayPreviousValue = displayPreviousValue;
-        this.calculating = new Calculator();
+    constructor(displayValorAnterior, displayValorActual) {
+        this.displayValorActual = displayValorActual;
+        this.displayValorAnterior = displayValorAnterior;
+        this.calculador = new Calculadora();
         this.tipoOperacion = undefined;
-        this.currentValue = '';
-        this.previousValue = '';
+        this.valorActual = '';
+        this.valorAnterior = '';
         this.signos = {
-            addition: '+',
-            division: '%',
-            multiplication: 'x',
-            subtraction: '-',
+            sumar: '+',
+            dividir: '%',
+            multiplicar: 'x',
+            restar: '-', 
         }
     }
 
-    delete(){
-        this.currentValue = this.currentValue.toString().slice(0,-1);
-        this.printValues();
+    borrar() {
+        this.valorActual = this.valorActual.toString().slice(0,-1);
+        this.imprimirValores();
     }
 
-    deleteAll(){
-        this.currentValue = '';
-        this.previousValue = '';
+    borrarTodo() {
+        this.valorActual = '';
+        this.valorAnterior = '';
         this.tipoOperacion = undefined;
-        this.printValues();
-
+        this.imprimirValores();
     }
 
-    computar(tipo){
-        this.tipoOperacion !== 'equal' && this.calcular();
-        this.tipoOperacion = tipo
-        this.previousValue = this.currentValue || this.previousValue
-        this.currentValue = '';
-        this.printValues();
+    computar(tipo) {
+        this.tipoOperacion !== 'igual' && this.calcular();
+        this.tipoOperacion = tipo;
+        this.valorAnterior = this.valorActual || this.valorAnterior;
+        this.valorActual = '';
+        this.imprimirValores();
     }
 
-    addNumber(number) {
-        if(number=== '.' && this.currentValue.includes('.'))return
-        this.currentValue = this.currentValue.toString() + number.toString();
-        this.printValues();
+    agregarNumero(numero) {
+        if(numero === '.' && this.valorActual.includes('.')) return
+        this.valorActual = this.valorActual.toString() + numero.toString();
+        this.imprimirValores();
     }
 
-    printValues(){
-        this.displayCurrentValue.textContent = this.currentValue;
-        this.displayPreviousValue.textContent = `${this.previousValue} ${this.signos[this.tipoOperacion] || '' }`;
+    imprimirValores() {
+        this.displayValorActual.textContent = this.valorActual;
+        this.displayValorAnterior.textContent = `${this.valorAnterior} ${this.signos[this.tipoOperacion] || ''}`;
     }
 
-    calcular(){
-        const previousValue = parseFloat(this.previousValue);
-        const currentValue = parseFloat(this.currentValue);
+    calcular() {
+        const valorAnterior = parseFloat(this.valorAnterior);
+        const valorActual = parseFloat(this.valorActual);
 
-        if( isNaN (currentValue) || isNaN (previousValue)) return
-        this.currentValue = this.calculating[this.tipoOperacion](currentValue, previousValue);
+        if( isNaN(valorActual)  || isNaN(valorAnterior) ) return
+        this.valorActual = this.calculador[this.tipoOperacion](valorAnterior, valorActual);
     }
 }
+

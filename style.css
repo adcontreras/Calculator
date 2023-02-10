@@ -30,14 +30,14 @@ body {
     height: 100vh;
 }
 
-.calculator {
-      display: grid;
-      grid-template-columns: repeat(4,75px);
-      grid-template-rows:160px repeat(5,75px);
-      background-color: #d22539;
-      padding: 15px;
-      border-radius: 32px;
-      box-shadow: 15px 10px 0px 5px #00000033;
+.calculadora {
+    display: grid;
+    grid-template-columns: repeat(4,75px);
+    grid-template-rows:160px repeat(5,75px);
+    background-color: #d22539;
+    padding: 15px;
+    border-radius: 32px;
+    box-shadow: 15px 10px 0px 5px #00000033;
 }
 
 button {
@@ -78,11 +78,10 @@ button:focus {
     box-shadow: 0px 0px 0px 10px #00000033;
 }
 
-#previous-value{
-    font-size: 1.5rem;
+#valor-actual {
+    font-size: 1.5em;
 }
 
-#current-value{
-    font-size: 1.5rem;
+#valor-anterior {
+    font-size: 1.5em;
 }
-
